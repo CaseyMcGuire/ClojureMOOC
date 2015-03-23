@@ -80,6 +80,14 @@
     (divides? 3 n) "fizz"
     (divides? 5 n) "buzz"
     :else          ""))
-    
-;(defn generic-doublificate
- ; "If the passed parameter is a number, returns a doubled.  
+
+;Exercise 6    
+(defn generic-doublificate [x]
+  (cond 
+    (number? x) (* x 2)
+    (empty? x) nil
+    (list? x) (* (count x) 2)
+    (vector? x) (* (count x) 2)
+    :else true))
+
+  
