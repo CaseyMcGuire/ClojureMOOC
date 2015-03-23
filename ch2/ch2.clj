@@ -90,4 +90,17 @@
     (vector? x) (* (count x) 2)
     :else true))
 
+;Exercise 7
+(defn not-teen? 
+  "Returns true when teen? returns false and false otherwise"
+  [x]
+  (not (teen? x)))
   
+(defn leap-year?
+  "Returns true if year is a leap year; false otherwise"
+  [year]
+  (cond
+    (not (== (mod year 4) 0)) false
+    (not (== (mod year 100) 0)) true
+    (not (== (mod year 400) 0)) false
+    :else true))
