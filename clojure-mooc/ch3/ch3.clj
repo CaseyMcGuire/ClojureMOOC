@@ -106,3 +106,36 @@
 
 ;Exercise 5
 
+(defn height 
+  "Returns the height of the rectangle"
+  [rectangle]
+  (let [[[x1 y1] [x2 y2]] rectangle]
+    (- y2 y1)))
+  
+(defn width
+  "Returns the width of a triangle"
+  [rectangle]
+  (let [[[x1 y1] [x2 y2]] rectangle]
+    (- x2 x1)))
+
+;Exercise 6
+(defn square?
+  "Returns true if the rectangle is square; false otherwise"
+  [rectangle]
+  (let [[[x1 y1] [x2 y2]] rectangle]
+    (= (- x2 x1) (- y2 y1))))
+
+;Exercise 7
+(defn area
+  "Returns the area of a rectangle"
+  [rectangle]
+  (let [[[x1 y1] [x2 y2]] rectangle]
+    (* (height rectangle) (width rectangle))))
+
+;Exercise 8
+(defn contains-point?
+  "Returns true if rectangle contains point; false otherwise"
+  [rectangle point]
+  (let [[[x1 y1] [x2 y2]] rectangle
+        [x3 y3] point]
+    (and (<= x1 x3 x2) (<= y1 y3 y2))))
