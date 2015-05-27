@@ -139,3 +139,69 @@
   (let [[[x1 y1] [x2 y2]] rectangle
         [x3 y3] point]
     (and (<= x1 x3 x2) (<= y1 y3 y2))))
+
+;Exercise 9
+(defn contains-rectangle?
+  "Returns true if inner rectange is inside the outer rectangle"
+  [outer inner]
+  (let [[[x1 y1] [x2 y2]] inner]
+    (and (contains-point? outer (point x1 y1))
+         (contains-point? outer (point x2 y2)))))
+
+;MAPS
+;Whereas a vector associates integers to values, a map is not restricted to integer keys. You can use any
+;kind of value as a key. A map is written with curly brackets, {}
+
+;{"foo" 42, "bar" 666}
+;{"mehmeh" (+ 2 5) 
+;"rupatipor" "ropopo"}
+
+;A map is indexed with the get function
+(let [ages {"Juhana" 3
+            "Ilmari" 42
+            "King of All Cosmos" -6}]
+  (get ages "King of All Cosmos"))
+
+;In idiomatic Clojure programs, the key of a map are often keywords. Keywords are convenient way of 
+;naming keys for values in associative collections such as maps. They are written with a preceding :
+
+(def book {:title "The City and the City"
+           :authors [{:name "China Mieville", :birth-year 1972}]})
+
+(get book :title)
+
+;Keywords are even more convenient than this. They work as functions that access collections.
+(:title book) ;=> "The City and the City"
+
+;count can be used to find out the amount of elements in a collection
+(count [1 2 3]);=> 3
+(count {:name "China Mieville", :birth-year 1972}) ;=> 2
+(count ":)") ;=> 2
+
+(def china {:name "China Mieville", :birth-year 1972})
+(def octavia {:name "Octavia E. Butler", :birth-year 1947, :death-year 2006})
+(def friedman {:name "Daniel Friedman" :birth-year 1944})
+(def felleisen {:name "Matthias Felleisen"})
+(def cities {:title "The City and the City" :authors [china]})
+(def wild-seed {:title "Wild Seed" :authors [octavia]})
+(def embassytown {:title "Embassytown", :authors [china]})
+(def little-schemer {:title "The Little Schemer" :authors [friedman, felleisen]})
+
+;Exercise 10
+(defn title-length
+  "Counts the length of the book's title"
+  [book]
+  (count (:title book)))
+
+;Exercise 11
+(defn author-count
+  "Returns the amount of authors that book has"
+  [book]
+  (count (:authors book)))
+
+;Exercise 12
+(defn multiple-authors?
+  "Returns true if book has multiple authors; false otherwise"
+  [book]
+  (<= 2 (author-count book)))
+    
